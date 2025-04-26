@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 10:00:00 by student           #+#    #+#             */
-/*   Updated: 2025/04/26 16:38:39 by mku              ###   ########.fr       */
+/*   Created: 2025/04/26 16:53:27 by mku               #+#    #+#             */
+/*   Updated: 2025/04/26 16:54:03 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#ifndef EVENTS_H
+# define EVENTS_H
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
+/* events/key_handler.c */
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
 
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
+/* events/exit_handler.c */
+int		exit_game(t_game *game);
+void	free_resources(t_game *game);
 
-void	error_exit(char *message)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
-	exit(1);
-}
-
-void	print_error(char *message)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
-}
+#endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: donghwi2 <donghwi2@student.42.fr>          +#+  +:+       +#+         #
+#    By: mku <mku@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/09 10:00:00 by student           #+#    #+#              #
-#    Updated: 2025/04/17 22:07:58 by donghwi2         ###   ########.fr        #
+#    Updated: 2025/04/26 16:51:58 by mku              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,39 @@ MLX_LIB = $(MLX_PATH)/libmlx.a
 
 # 소스 디렉토리 및 파일
 SRCS_DIR = srcs
+PARSER =	parser/parse_colors.c\
+			parser/parse_colors2.c\
+			parser/parse_map.c\
+			parser/parse_map2.c\
+			parser/parse_map3.c\
+			parser/parse_textures.c\
+			parser/parse_textures2.c\
+			parser/validate_map.c\
+			parser/validate2_map.c
+PLAYER =	player/move.c\
+			player/move_utils.c\
+			player/rotate.c
+RENDERING =	rendering/draw.c\
+			rendering/ray.c\
+			rendering/raycasting.c\
+			rendering/render.c\
+			rendering/textures.c
+UTILS =		utils/error.c\
+			utils/math_utils.c\
+			utils/memory.c\
+			utils/string_utils.c\
+			utils/split.c
+EVENTS =	events/exit_handler.c\
+			events/key_handler.c
+MLX =		mlx/mlx_wrapper.c
+
 SRCS = main.c init.c init2.c \
-       parser/parse_map.c parser/validate_map.c parser/parse_textures.c parser/parse_colors.c \
-       rendering/render.c rendering/raycasting.c rendering/textures.c rendering/draw.c \
-       player/move.c player/rotate.c \
-       events/key_handler.c events/exit_handler.c \
-       utils/error.c utils/memory.c utils/math_utils.c utils/string_utils.c \
-       mlx/mlx_wrapper.c
+	   $(PARSER)\
+	   $(PLAYER)\
+	   $(RENDERING)\
+	   $(UTILS)\
+	   $(EVENTS)\
+	   $(MLX)
 
 # 소스 파일 경로
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))

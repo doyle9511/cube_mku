@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   move_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 10:00:00 by student           #+#    #+#             */
-/*   Updated: 2025/04/26 16:38:39 by mku              ###   ########.fr       */
+/*   Created: 2025/04/26 15:17:09 by mku               #+#    #+#             */
+/*   Updated: 2025/04/26 16:06:17 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/move.h"
 #include "../../includes/cub3d.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	is_wall(t_map *map, double x, double y)
 {
-	int	i;
-
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
-
-void	error_exit(char *message)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
-	exit(1);
-}
-
-void	print_error(char *message)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
+	if (x < 0 || x >= map->width || y < 0 || y >= map->height)
+		return (1);
+	if (map->grid[(int)y][(int)x] == '1')
+		return (1);
+	return (0);
 }

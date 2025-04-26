@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   parse_map3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 10:00:00 by student           #+#    #+#             */
-/*   Updated: 2025/04/26 16:38:39 by mku              ###   ########.fr       */
+/*   Created: 2025/04/23 18:46:41 by mku               #+#    #+#             */
+/*   Updated: 2025/04/23 18:49:27 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+#include <stdlib.h>
 
-void	ft_putstr_fd(char *s, int fd)
+void	free_string_array(char **array)
 {
 	int	i;
 
-	if (!s)
+	if (!array)
 		return ;
 	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
-
-void	error_exit(char *message)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
-	exit(1);
-}
-
-void	print_error(char *message)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
+	while (array[i])
+		free(array[i++]);
+	free(array);
 }

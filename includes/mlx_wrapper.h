@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   mlx_wrapper.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 10:00:00 by student           #+#    #+#             */
-/*   Updated: 2025/04/26 16:38:39 by mku              ###   ########.fr       */
+/*   Created: 2025/04/26 16:55:42 by mku               #+#    #+#             */
+/*   Updated: 2025/04/26 17:05:42 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#ifndef MLX_WRAPPER_H
+# define MLX_WRAPPER_H
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
+/* mlx/mlx_wrapper.c */
+void	*mlx_init_wrapper(void);
+void	*mlx_new_window_wrapper(void *mlx_ptr, int width, \
+		int height, char *title);
+void	*mlx_new_image_wrapper(void *mlx_ptr, int width, int height);
+int		mlx_hook_wrapper(void *win_ptr, int event, int mask, \
+		int (*f)(), void *param);
 
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
-
-void	error_exit(char *message)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
-	exit(1);
-}
-
-void	print_error(char *message)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
-}
+#endif

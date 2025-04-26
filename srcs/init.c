@@ -3,43 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donghwi2 <donghwi2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mku <mku@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:00:00 by student           #+#    #+#             */
-/*   Updated: 2025/04/17 21:50:27 by donghwi2         ###   ########.fr       */
+/*   Updated: 2025/04/26 16:47:20 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/move.h"
+#include "../includes/utils.h"
 
-/**
- * 게임 구조체 초기화
- * 모든 변수를 0으로 초기화하고 기본값 설정
- */
 void	init_game(t_game *game)
 {
 	int	i;
 
-	memset(game, 0, sizeof(t_game));// 모든 메모리를 0으로 초기화
+	memset(game, 0, sizeof(t_game));
 	i = 0;
-	while (i < 4)// 텍스처 배열 초기화
+	while (i < 4)
 	{
 		game->textures[i].path = NULL;
 		i++;
 	}
-	game->map.grid = NULL;// 맵 구조체 초기화
+	game->map.grid = NULL;
 	game->map.width = 0;
 	game->map.height = 0;
 	game->map.player_dir = 0;
-	game->floor.value = -1;// 색상 구조체 초기화
+	game->floor.value = -1;
 	game->ceiling.value = -1;
-	game->tex_buf = NULL;// 텍스처 버퍼 초기화 (나중에 메모리 할당)
+	game->tex_buf = NULL;
 }
 
-/**
- * 플레이어 위치 및 방향 초기화
- * 맵에서 플레이어 시작 위치와 방향을 찾아 설정
- */
 void	init_player(t_game *game)
 {
 	int	x;
@@ -65,9 +59,6 @@ void	init_player(t_game *game)
 	}
 }
 
-/**
- * 북쪽과 남쪽 방향 설정
- */
 static void	set_ns_direction(t_game *game, char dir)
 {
 	game->player.dir_x = 0;
@@ -85,9 +76,6 @@ static void	set_ns_direction(t_game *game, char dir)
 	}
 }
 
-/**
- * 동쪽과 서쪽 방향 설정
- */
 static void	set_ew_direction(t_game *game, char dir)
 {
 	game->player.dir_y = 0;
@@ -105,9 +93,6 @@ static void	set_ew_direction(t_game *game, char dir)
 	}
 }
 
-/**
- * 플레이어의 방향과 카메라 평면 설정
- */
 void	set_player_direction(t_game *game, char dir)
 {
 	if (dir == 'N' || dir == 'S')
