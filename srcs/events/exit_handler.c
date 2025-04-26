@@ -6,7 +6,7 @@
 /*   By: donghwi2 <donghwi2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:00:00 by student           #+#    #+#             */
-/*   Updated: 2025/04/09 17:42:57 by donghwi2         ###   ########.fr       */
+/*   Updated: 2025/04/26 17:19:04 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ void	free_resources(t_game *game)
 		mlx_destroy_image(game->mlx, game->img.img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-	#ifdef __linux__
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
-	#endif
 	if (game->mlx)
 		free(game->mlx);
 }
